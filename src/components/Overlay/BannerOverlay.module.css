@@ -1,0 +1,93 @@
+.body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 1;
+  font-size: 1.5vw;
+  z-index: 1;
+  cursor: default;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.text {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: calc(var(--slideWidth) * 0.12);
+  padding-top: 20%;
+  overflow: hidden;
+}
+.btnContainer {
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  font-size: 0.8em;
+  width: 45%;
+}
+.description {
+  width: 45%;
+}
+.btnContainer > div {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.rightFloat {
+  display: block;
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+}
+.rightFloat * {
+  display: inline;
+}
+.mute {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 3px 1.5px 3px 2px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.rating {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-left: 5px solid white;
+  padding: 3px;
+  padding-right: calc(var(--slideWidth) * 0.12);
+  padding-left: 5px;
+}
+
+/* */
+.mobileContainer {
+  display: grid;
+  padding: calc(var(--slideWidth) * 0.12);
+  font-size: 0.7rem;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.mobileTitle {
+  width: 60%;
+}
+.mobileInfo {
+  color: var(--grey2);
+}
+.mobileButton {
+  background-color: var(--red);
+  width: 60px;
+  font-size: 0.6rem;
+  letter-spacing: 0.4px;
+  text-align: center;
+  padding: 4px 8px 4px 8px;
+}

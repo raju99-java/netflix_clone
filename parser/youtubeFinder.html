@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+      /**
+       This tool takes in the input movies and tv show json files and
+       searches for the relevant youtube ID for each item. it prints
+       the JSON file to the GUI after a few seconds
+
+       */
+
+      const apiKey = "";
+
+      let items;
+      let genres;
+      const folders = [
+        {
+          type: "movies",
+          path: "./input/movies/"
+        },
+        {
+          type: "tvShow",
+          path: "./input/shows/"
+        }
+      ];
+
+      fetch("./resources/movieGenres.json")
+        .then(res => {
+          return res.json();
+        })
+        .then(result => {
+          console.log("file loaded");
+          folders[0].genres = result;
+        });
+
+      fetch("./resources/tvShowGenres.json")
+        .then(res => {
+          return res.json();
+        })
+        .then(result => {
+          console.log("file loaded");
+          folders[1].genres = result;
+        });
+
+      function start(file, genres) {
+        fetch(file)
+          .then(res => {
+            return res.json();
+          })
+          .then(result => {
+            console.log("file loaded");
+            items = result;
+            execute(items, genres);
+          });
+      }
+      function loadClient() {
+        gapi.client.setApiKey(apiKey);
+        return gapi.client
+          .load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+          .then(
+            function() {
+              console.log("GAPI client loaded for API");
+            },
+            function(err) {
+              console.error("Error loading GAPI client for API", err);
+            }
+          );
+      }
+
+      // Make sure the client is loaded and sign-in is complete before calling this method.
+      function execute(items, genres) {
+        items.forEach(page => {
+          Promise.all(
+            page.results.forEach(movie => {
+              movie.genre_ids = movie.genre_ids.map(id => {
+                return genres.genres.find(genre => genre.id === id);
+              });
+              return gapi.client.youtube.search
+                .list({
+                  part: "id",
+                  q: `${
+                    movie.title === undefined ? movie.name : movie.title
+                  } trailer`,
+                  type: "videos"
+                })
+                .then(
+                  function(response) {
+                    // Handle the results here (response.result has the parsed body).
+                    movie.videoId = response.result.items[0].id.videoId;
+                  },
+                  function(err) {
+                    console.error("Execute error", err);
+                  }
+                );
+            })
+          ).then(outputJSON(items));
+        });
+      }
+      function outputJSON(items) {
+        let pre = document.createElement("PRE");
+
+        pre.innerHTML = JSON.stringify(items);
+        document.body.querySelector("#root").appendChild(pre);
+      }
+
+      gapi.load("client:auth2", function() {
+        gapi.auth2.init({ client_id: "YOUR_CLIENT_ID" });
+      });
+
+      let file = "./input/movies/movies0.json";
+      start(file, folders[0].genres);
+    </script>
+    <button onclick="loadClient()">
+      load
+    </button>
+    <button onclick="start();">start</button>
+    <div id="root" style="width:500px;"></div>
+  </body>
+</html>

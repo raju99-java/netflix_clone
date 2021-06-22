@@ -1,0 +1,102 @@
+.main {
+  background-color: var(--black);
+  min-height: 80vh;
+}
+
+/* Hide scrollbar chrome*/
+.main::-webkit-scrollbar {
+  width: 0 !important;
+}
+/* Hide scrollbar firefox */
+.main {
+  overflow: -moz-scrollbars-none;
+}
+
+/* hide IE 10+*/
+.main {
+  -ms-overflow-style: none;
+}
+
+@media only screen and (max-width: 478px) {
+  /* mobile*/
+  .main {
+    padding-top: 8vh;
+  }
+}
+
+.banner {
+  width: 100%;
+  object-fit: contain;
+  max-height: 100vh;
+}
+
+.gridContainer {
+  position: relative;
+  overflow: auto;
+  padding: calc(var(--slideWidth) * 0.12);
+  margin-bottom: calc(var(--slideWidth) * -0.22);
+  height: 100%;
+  padding-top: 8vh;
+}
+.gridBody {
+  padding: calc(var(--slideHeight) / 2) 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  white-space: nowrap;
+
+  grid-gap: calc(var(--slideHeight) / 2);
+  height: 100%;
+
+  /* dynamically remove these margins depending on scroll positon if infinite scroll wont work*/
+  margin-left: calc(var(--slideWidth) * -0.12);
+  margin-right: calc(var(--slideWidth) * -0.12);
+  padding-left: calc(var(--slideWidth) * 0.12);
+}
+
+/* Hide scrollbar chrome*/
+.gridBody::-webkit-scrollbar {
+  width: 0 !important;
+}
+/* Hide scrollbar firefox */
+.gridBody {
+  overflow: -moz-scrollbars-none;
+}
+
+/* hide IE 10+*/
+.gridBody {
+  -ms-overflow-style: none;
+}
+.title {
+  position: absolute;
+}
+
+.notFound {
+  text-align: center;
+
+  margin: 0 auto;
+  width: 400px;
+  max-width: 100%;
+  padding: 275px 0;
+  min-height: 100vh;
+
+  font-size: 1rem;
+}
+.notFound li {
+  line-height: 1.2rem;
+  margin-left: 50px;
+  max-width: 80%;
+}
+
+.noItems {
+  text-align: center;
+  margin: 0 auto;
+  width: 500px;
+  max-width: 100%;
+  padding: 210px 0;
+  color: gray;
+  font-size: 1.1rem;
+  min-height: 100vh;
+}

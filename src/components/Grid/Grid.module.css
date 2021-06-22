@@ -1,0 +1,47 @@
+.column {
+  display: inline-flex;
+}
+
+.column > div:hover {
+  transform: scale(1.9, 1.9);
+  -webkit-transform: scale(1.9, 1.9);
+}
+/* ==============FIRST SLIDE======================*/
+.column > div:first-child:hover ~ div {
+  transform: translate3d(calc(var(--slideWidth) / 1.11), 0, 0) !important;
+  -webkit-transform: translate3d(
+    calc(var(--slideWidth) / 1.11),
+    0,
+    0
+  ) !important;
+}
+.column > div:first-child {
+  /* Used to override case when a column has a single slide*/
+  transform-origin: center left !important;
+}
+
+/* ==============MIDDLE SLIDES=====================*/
+/* all slides on right of hovered item*/
+.column > div:hover ~ div {
+  transform: translate3d(calc(var(--slideWidth) / 2.22), 0, 0) !important;
+}
+/*  all*/
+.column:hover > div:not(:hover) {
+  /* By Default, slideTransaltMult is -2, it is changed to -1 when hovering over last slide
+  This will push the item further to left when hovering on last slide if slideTranslateMult is set to -1*/
+  transform: translate3d(
+    calc(var(--slideWidth) / 1.11 / var(--slideTranslateMult)),
+    0,
+    0
+  );
+}
+/* all central items*/
+.column > div:not(:first-child):not(:last-child) {
+  transform-origin: center;
+}
+
+/* ================LAST SLIDE===================== */
+
+.column > div:last-child {
+  transform-origin: center right;
+}

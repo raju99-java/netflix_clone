@@ -1,0 +1,92 @@
+.container {
+  height: calc(var(--slideWidth) * 1.9);
+  max-height: calc(var(--slideHeight) * 2.15);
+
+  position: relative;
+  overflow: hidden;
+  padding: 0 calc(var(--slideWidth) * 0.12);
+  margin-bottom: calc(var(--slideWidth) * -0.425);
+}
+.container:hover {
+  z-index: 2;
+}
+
+.header {
+  top: calc(var(--slideWidth) * 0.04);
+  position: absolute;
+  z-index: 0;
+  font-size: 0.9rem;
+}
+@media (max-width: 478px) {
+  .header {
+    top: 0;
+    margin-top: -2px;
+  }
+}
+
+.body {
+  /* display: flex; */
+  overflow-y: hidden;
+  position: relative;
+  overflow-x: scroll;
+  z-index: 1;
+  display: grid;
+  height: calc(var(--slideWidth) * 1.9);
+  max-height: calc(var(--slideHeight) * 1.9);
+
+  align-content: center;
+  white-space: nowrap;
+  transition: 450ms all;
+  -webkit-transition: 450ms all;
+
+  /* dynamically remove these margins depending on scroll positon if infinite scroll wont work*/
+  margin-left: calc(var(--slideWidth) * -0.12);
+  margin-right: calc(var(--slideWidth) * -0.12);
+  padding-left: calc(var(--slideWidth) * 0.12);
+}
+
+/* Hide scrollbar chrome*/
+.body::-webkit-scrollbar,
+.overlay {
+  width: 0 !important;
+}
+/* Hide scrollbar firefox */
+.body,
+.overlay {
+  overflow: -moz-scrollbars-none;
+}
+
+/* hide IE 10+*/
+.body {
+  -ms-overflow-style: none;
+}
+
+/* Buttons */
+.btnContainer {
+  position: absolute;
+
+  z-index: 2;
+}
+.btn {
+  position: absolute;
+  cursor: pointer;
+  font-size: 1.5em;
+  display: inline-block;
+  z-index: 2;
+  top: calc(var(--slideWidth) * 0.4);
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+.hidden {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.show {
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}

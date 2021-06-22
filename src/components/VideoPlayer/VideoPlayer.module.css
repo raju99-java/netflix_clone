@@ -1,0 +1,38 @@
+.body {
+  font-size: 20px;
+  height: var(--slideHeight);
+  max-height: calc(var(--slideHeight) * 1.9);
+
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-right: 2px solid var(--black);
+  border-left: 2px solid var(--black);
+
+  width: var(--slideWidth);
+  transition: 450ms all;
+  max-width: 100%;
+  margin-top: -8px;
+  opacity: 1;
+  background-color: var(--black);
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  opacity: 1;
+  transition: opacity 450ms linear, visibility 0ms 400ms;
+  -moz-transition: opacity 450ms linear, visibility 0ms 400ms;
+  -ms-transition: opacity 450ms linear, visibility 0ms 400ms;
+  -o-transition: opacity 450ms linear, visibility 0ms 400ms;
+  -webkit-transition: opacity 450ms linear, visibility 0ms 400ms;
+}

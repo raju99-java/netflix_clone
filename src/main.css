@@ -1,0 +1,70 @@
+/*===================
+ Base Styling
+*/
+
+:root {
+  --black: #141414;
+  --white: #fff;
+  --red: #e50914;
+  --grey: #dfdfdf;
+  --grey1: #f3f3f3;
+  --grey2: #999999;
+  --grey3: #bababa;
+  --lightBlue: #2a94fc;
+  --slideWidth: 200px;
+  --slideHeight: calc(var(--slideWidth) * 0.5625); /* 16:9 aspect ratio*/
+  --slideTranslateMult: -2;
+  --mobile: 478px;
+  --tablet: 720px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+  text-decoration: none;
+}
+/* 
+.noPointerEvents * {
+  opacity: 0 !important;
+} */
+.noPointerEvents {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.noPointerEvents * {
+  pointer-events: none !important;
+}
+.noPointerEvents:before {
+  z-index: 3;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--black),
+    var(--black)
+  );
+  opacity: 0.5;
+  transition: 2000ms all;
+}
+/* Hide scrollbar chrome*/
+*::-webkit-scrollbar {
+  width: 0 !important;
+}
+/* Hide scrollbar firefox */
+* {
+  overflow: -moz-scrollbars-none;
+}
+
+/* hide IE 10+*/
+* {
+  -ms-overflow-style: none;
+}
